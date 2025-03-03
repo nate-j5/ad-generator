@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Dynamic Ad Generator
 
-## Getting Started
+A concept project that lets you create LLM-generated ads. This project was created to learn more about [StackAdapt](https://www.stackadapt.com/). 
 
-First, run the development server:
+Website: [Demo](https://ad-generator.onrender.com)  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> Note: Please allow up to 30 seconds for the site to load - it's hosted for free. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Functionality
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Enter your product description
+Enter a product or service description and hit the "Generate" or press Enter.
 
-## Learn More
+<img src="./public/ss1.png" alt="screenshot 1" width="1000" style="margin: 10px 0;" />
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. **View Advertisement**  
+The system will generate an advertisement based on your query.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<img src="./public/ss2.png" alt="screenshot 1" width="1000" style="margin: 10px 0;" />
 
-## Deploy on Vercel
+## Technical notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Built with Next.js and the OpenAI Assistants API
+- Next: Adding additional media types (images and video) to the application.

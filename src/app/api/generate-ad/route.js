@@ -1,9 +1,8 @@
-// src/app/api/generate-ad/route.js
 import { OpenAI } from "openai";
 
 export async function POST(request) {
   const { userInput } = await request.json();
-  
+
   try {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const thread = await openai.beta.threads.create();
@@ -17,17 +16,17 @@ export async function POST(request) {
       Format your response as a JSON object with these keys: headline, tagline, description, callToAction.
       Do not include any explanation or additional text.
     `;
-    
+
     await openai.beta.threads.messages.create(thread.id, {
       role: "user",
       content: promptContent,
     });
-    
+
     const run = await openai.beta.threads.runs.create(thread.id, {
       assistant_id: process.env.ASSISTANT_ID,
-      max_completion_tokens: 300,
+      max_completion_tokens: 350,
     });
-    
+
     let runStatus = await openai.beta.threads.runs.retrieve(thread.id, run.id);
     while (runStatus.status !== "completed") {
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -36,13 +35,13 @@ export async function POST(request) {
         throw new Error(`Run ended with status: ${runStatus.status}`);
       }
     }
-    
+
     const messages = await openai.beta.threads.messages.list(thread.id);
     let assistantResponse = messages.data
       .filter((msg) => msg.role === "assistant")
       .map((msg) => msg.content[0].text.value)
       .join("\n");
-    
+
     let adContent;
     try {
       if (assistantResponse.includes("```json")) {
@@ -67,7 +66,7 @@ export async function POST(request) {
         callToAction: "Discover More",
       };
     }
-    
+
     return Response.json({ adContent });
   } catch (error) {
     console.error("Error:", error);
